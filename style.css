@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 * {
 	padding: 0;
 	margin: 0;
@@ -6,19 +8,148 @@
 
 body {
 	margin: 0;
-	font-family: "Montserrat", sans-serif;
+	font-family: "Poppins", sans-serif;
 	font-optical-sizing: auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: white;
-	color: black;
+	color: #181818;
 	display: flex;
-	flex-direction: column;
 	height: 100vh;
 	width: 100vw;
+
+	background-image: url("./assets/Patterns.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	overflow: hidden;
 }
 
-#content {
-    flex: 1;
+.content-left .logo {
+	margin-bottom: 64px;
 }
 
+.content-left {
+	flex: 1;
+	padding: 64px 0 64px 120px;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+}
+
+.content-left .title {
+	width: 100%;
+	padding-bottom: 20px;
+	font-size: 64px;
+	font-weight: 700;
+	line-height: 70px;
+}
+
+.content-left .description {
+	width: 100%;
+	padding-bottom: 32px;
+	text-align: left;
+	color: darkgrey;
+}
+
+.content-left .download-btn {
+	background-color: #4787ef;
+	color: white;
+	padding: 12px 16px;
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.content-left .download-btn div {
+	padding-right: 6px;
+}
+
+.content-left .download-description {
+	font-size: 12px;
+	padding-top: 12px;
+	font-weight: 500;
+}
+
+.content-left .download-description a {
+	text-decoration: underline;
+	cursor: pointer;
+	color: #181818;
+}
+
+.content-left .data {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	align-items: start;
+}
+
+.content-left .data-title {
+	font-size: 14px;
+	color: #181818;
+}
+
+.content-left .data .bytes-transferred {
+	font-size: 64px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	color: #181818;
+}
+
+.content-right {
+	flex: 1.5;
+	display: flex;
+	padding: 12px 44px 0 0;
+}
+
+.content-right .pattern {
+	background-image: url("./assets/pattern_1.png");
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 100%;
+	height: 98%;
+}
+
+/* Footer */
+#footer {
+	position: fixed; /* stays at the bottom independently */
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 270px;
+	overflow: hidden;
+	z-index: -1;
+	background-color: transparent;
+}
+
+.ticker-wrap {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.ticker {
+	display: flex;
+	width: max-content;
+	white-space: nowrap;
+	animation: ticker-scroll 40s linear infinite;
+}
+.item {
+	font-size: 300px;
+	font-weight: 700;
+	color: lightgrey;
+}
+
+/* Smooth infinite loop scroll */
+@keyframes ticker-scroll {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
