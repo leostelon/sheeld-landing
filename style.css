@@ -153,3 +153,51 @@ body {
 		transform: translateX(-50%);
 	}
 }
+
+@media only screen and (max-width: 1080px) {
+	body {
+		background-size: cover;
+	}
+
+	.content-left {
+		padding: 32px 0 42px 24px;
+	}
+	.content-left .title {
+		font-size: 50px;
+		line-height: 54px;
+	}
+
+	.content-left .description {
+		padding-bottom: 48px;
+		font-size: 14px;
+	}
+
+	.content-right {
+		padding: 64px 12px 64px 12px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	body {
+		flex-direction: column;
+		background-size: cover;
+	}
+
+	.content-left {
+		padding: 12px 0 24px 12px;
+	}
+	.content-left .title {
+		font-size: 44px;
+		font-weight: 700;
+		line-height: 48px;
+	}
+
+	.content-left .description {
+		padding-bottom: 48px;
+		font-size: 14px;
+	}
+
+	.content-right {
+		display: none;
+	}
+}
