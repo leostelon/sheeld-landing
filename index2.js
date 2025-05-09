@@ -6,8 +6,8 @@ async function initialize() {
     console.log(data)
 	let result = { inbound: 0, outbound: 0 };
 	data.forEach((t) => {
-		result.usage.inbound += t.inbound;
-		result.usage.outbound += t.outbound;
+		result.inbound += t.usage.inbound;
+		result.outbound += t.usage.outbound;
 	});
 
 	animateCounter(bytesTransferredElement, result.inbound + result.outbound);
