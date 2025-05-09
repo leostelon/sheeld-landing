@@ -3,10 +3,11 @@ let bytesTransferredElement = document.querySelector(".bytes-transferred");
 async function initialize() {
 	const res = await fetch("/api/bandwidth");
 	const data = await res.json();
+    console.log(data)
 	let result = { inbound: 0, outbound: 0 };
 	data.forEach((t) => {
-		result.inbound += t.inbound;
-		result.outbound += t.outbound;
+		result.usage.inbound += t.inbound;
+		result.usage.outbound += t.outbound;
 	});
 
 	animateCounter(bytesTransferredElement, result.inbound + result.outbound);
