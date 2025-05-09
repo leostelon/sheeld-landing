@@ -1,19 +1,24 @@
 let bytesTransferredElement = document.querySelector(".bytes-transferred");
-function fetchData() {
-	fetch("http://localhost:3001/client/usage")
-		.then(async (response) => {
-			if (!response.ok) {
-				throw new Error("Network response was not ok");
-			}
-			return response.json();
-		})
-		.then((data) => {
-			console.log(data);
-			animateCounter(bytesTransferredElement, data.inbound);
-		})
-		.catch((error) => {
-			console.error("Error fetching data:", error);
-		});
+
+async function initialize() {
+	const nodes = await getNodes();
+	// Fetch every 5 seconds
+	setInterval(() => getBandwidth(nodes), 5000);
+}
+async function fetchData(url) {
+	const response = await fetch(`http://${url}/client/usage`);
+	const parsedResponse = await response.json();
+	return parsedResponse;
+}
+
+async function getNodes() {
+	try {
+		const response = await fetch("http://206.189.156.2:3001/network/all-nodes");
+		const parsedResponse = await response.json();
+		return parsedResponse;
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 function animateCounter(element, endBytes, duration = 1000) {
@@ -23,7 +28,7 @@ function animateCounter(element, endBytes, duration = 1000) {
 	if (previous === endBytes) {
 		return; // No change — skip animation
 	}
-	const startBytes = 0;
+	const startBytes = previous;
 	const startTime = performance.now();
 
 	function update(time) {
@@ -75,10 +80,21 @@ function formatBytes(bytes, includeGB = true) {
 }
 
 // Initial fetch
-fetchData();
+initialize();
 
-// Fetch every 5 seconds
-setInterval(fetchData, 5000);
+async function getBandwidth(nodes) {
+	const txs = await Promise.all(
+		nodes.map((n) => {
+			return fetchData(removeIpScheme(n.ip) + ":" + n.apiPort);
+		})
+	);
+	let result = { inbound: 0, outbound: 0 };
+	txs.forEach((t) => {
+		result.inbound += t.inbound;
+		result.outbound += t.outbound;
+	});
+	animateCounter(bytesTransferredElement, result.inbound + result.outbound);
+}
 
 document.getElementById("download-btn").addEventListener("click", function () {
 	const link = document.createElement("a");
@@ -88,3 +104,7 @@ document.getElementById("download-btn").addEventListener("click", function () {
 	link.click();
 	document.body.removeChild(link);
 });
+
+function removeIpScheme(ip) {
+	return ip.replace("http://", "").replace("https://", "");
+}
