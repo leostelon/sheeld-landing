@@ -79,3 +79,12 @@ fetchData();
 
 // Fetch every 5 seconds
 setInterval(fetchData, 5000);
+
+document.getElementById("download-btn").addEventListener("click", function () {
+	const link = document.createElement("a");
+	link.href = "assets/app-release.apk";
+	link.download = "app-release.apk";
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
+});

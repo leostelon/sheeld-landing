@@ -61,6 +61,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	cursor: pointer;
 }
 .content-left .download-btn div {
 	padding-right: 6px;
