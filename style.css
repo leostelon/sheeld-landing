@@ -78,6 +78,30 @@ body {
 	cursor: pointer;
 	color: #181818;
 }
+.content-left .features {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 58px;
+}
+
+.content-left .features div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 50px;
+	min-width: 50px;
+}
+
+.content-left .features .icon {
+	background-color: #f8f8f8;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
 
 .content-left .data {
 	flex: 1;
@@ -160,26 +184,26 @@ body {
 	position: relative;
 }
 .bytes-transferred .new-number {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    animation: fadeInOut 0.5s ease-in-out forwards;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	animation: fadeInOut 0.5s ease-in-out forwards;
 }
 
 @keyframes fadeInOut {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
+	0% {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	50% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
 }
 
 @media only screen and (max-width: 1080px) {
@@ -223,6 +247,22 @@ body {
 	.content-left .description {
 		padding-bottom: 48px;
 		font-size: 14px;
+	}
+
+	.content-left .features {
+		flex-wrap: wrap;
+		justify-content: space-around;
+		gap: 24px;
+	}
+
+	.content-left .features div {
+		width: 45%;
+		margin-bottom: 12px;
+	}
+
+	.content-left .features .icon {
+		width: 60px;
+		height: 60px;
 	}
 
 	.content-right {
