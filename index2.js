@@ -28,7 +28,7 @@ function animateCounter(element, endBytes, duration = 1000) {
 		const progress = Math.min(elapsed / duration, 1);
 		const currentBytes = startBytes + (endBytes - startBytes) * progress;
 
-		const { value, unit } = formatBytes(currentBytes);
+		const { value, unit } = formatBytes(currentBytes, false);
 		element.innerText = Math.round(value) + " " + unit;
 
 		if (progress < 1) {
